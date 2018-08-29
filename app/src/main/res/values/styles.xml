@@ -1,0 +1,31 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <!-- Styles for the Movie Reviews list elements -->
+    <style name="ListRowTitle">
+        <item name="android:textSize">@dimen/listrow_title_text</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+    <style name="ListRowMetaInfo">
+        <item name="android:textSize">@dimen/listrow_meta_text</item>
+        <item name="android:textColor">@color/colorMetaGrey</item>
+    </style>
+    <style name="ListRowHeadline">
+        <item name="android:textSize">@dimen/listrow_body_text</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+    <style name="ListRowBody">
+        <item name="android:textSize">@dimen/listrow_body_text</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+</resources>

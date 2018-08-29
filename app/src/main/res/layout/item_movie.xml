@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:background="@drawable/item_background">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/movie_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/thumbnail"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginBottom="8dp"
+            android:scaleType="fitStart"
+            tools:src="@color/colorAccent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/more_button"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/chevron_right"
+            android:alpha="0.5"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/title"
+            style="@style/ListRowTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:ellipsize="end"
+            app:layout_constraintTop_toTopOf="@id/thumbnail"
+            app:layout_constraintLeft_toRightOf="@id/thumbnail"
+            tools:text="Superman" />
+
+        <TextView
+            android:id="@+id/pub_date"
+            style="@style/ListRowMetaInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="13dp"
+            android:layout_marginLeft="8dp"
+            app:layout_constraintStart_toEndOf="@id/thumbnail"
+            app:layout_constraintTop_toBottomOf="@id/title"
+            tools:text="2018" />
+
+        <TextView
+            android:id="@+id/mpaa_rating"
+            style="@style/ListRowMetaInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="13dp"
+            android:layout_marginLeft="8dp"
+            app:layout_constraintStart_toEndOf="@+id/thumbnail"
+            app:layout_constraintTop_toBottomOf="@id/pub_date"
+            tools:text="R" />
+    </android.support.constraint.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/reviewer"
+        android:layout_width="match_parent"
+        android:layout_height="13dp"
+        android:layout_marginBottom="5dp"
+        style="@style/ListRowBody"
+        tools:text="Lois Lane" />
+
+    <TextView
+        android:id="@+id/headline"
+        android:layout_width="match_parent"
+        android:layout_height="13dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        style="@style/ListRowHeadline"
+        tools:text="This is the headline" />
+
+    <TextView
+        android:id="@+id/summary_short"
+        android:layout_width="match_parent"
+        android:layout_height="13dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        style="@style/ListRowBody"
+        tools:text="This is the summary" />
+
+</LinearLayout>

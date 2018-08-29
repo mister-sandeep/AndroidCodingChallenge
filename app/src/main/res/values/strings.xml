@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Ripe Tomatoes</string>
+    <string name="open_table_landing">Press the button below to launch the OpenTable test.\n\nThe sample code will fetch content from a given URL, and display the results in a list.</string>
+    <string name="launch">launch</string>
+    <string name="title_activity_list">Movie Reviews</string>
+</resources>
