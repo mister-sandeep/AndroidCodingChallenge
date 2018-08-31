@@ -71,7 +71,6 @@ public class MovieReviewModel extends ViewModel {
         call.enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                // TODO propagate an error
                 mReviews.postValue(null);
             }
 
@@ -92,15 +91,13 @@ public class MovieReviewModel extends ViewModel {
 
                     List<MovieReview> results = apiResponse.getResults();
 
-                    if (apiResponse.getNumResults() < 1 || results.size() < 1) {
-                        // TODO propagate an error
+                    if (apiResponse.getNumResults() != results.size()) {
                         mReviews.postValue(null);
                     } else {
-                        mReviews.postValue(results);
+                        mReviews.postValue(results); // even if results.size == 0
                     }
 
                 } else {
-                    // TODO examine the various response codes and propagate an error
                     mReviews.postValue(null);
                 }
             }

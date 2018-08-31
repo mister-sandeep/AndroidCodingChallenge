@@ -23,6 +23,11 @@
             android:name="com.deepers.ripetomatoes.ListActivity"
             android:label="@string/title_activity_list"/>
 
+        <activity
+            android:name="com.deepers.ripetomatoes.DetailsActivity"
+            android:label="@string/title_activity_details"
+            android:parentActivityName=".ListActivity"/>
+
     </application>
 
 </manifest>

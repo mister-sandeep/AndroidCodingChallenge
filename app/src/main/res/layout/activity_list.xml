@@ -8,13 +8,11 @@
     tools:context=".ListActivity"
     tools:showIn="@layout/activity_list">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_movies"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="vertical">
+    <include layout="@layout/content_list" />
 
-    </android.support.v7.widget.RecyclerView>
+    <include layout="@layout/emtpy_list" />
+
+    <include layout="@layout/error_layout" />
 
     <ProgressBar
         android:id="@+id/spinner"

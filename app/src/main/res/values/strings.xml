@@ -3,4 +3,10 @@
     <string name="open_table_landing">Press the button below to launch the OpenTable test.\n\nThe sample code will fetch content from a given URL, and display the results in a list.</string>
     <string name="launch">launch</string>
     <string name="title_activity_list">Movie Reviews</string>
+    <string name="title_activity_details">Review</string>
+    <string name="empty_list">Sorry, we couldn\'t find any reviews.</string>
+    <string name="error_msg">Sorry, there was an error fetching the reviews.\n\nPlease try again later.</string>
+    <string name="critics_pick">Critics Pick</string>
+    <string name="publication_date">Reviewed on:</string>
+    <string name="release_date">Release date:</string>
 </resources>

@@ -11,4 +11,11 @@
     <dimen name="listrow_meta_text">10sp</dimen>
     <dimen name="listrow_body_text">10sp</dimen>
     <dimen name="listrow_subtitle_text">12sp</dimen>
+
+    <!-- Font sizes for the Movie Reviews detail screen -->
+    <dimen name="details_title_text">20sp</dimen>
+    <dimen name="details_meta_text">12sp</dimen>
+    <dimen name="details_body_text">13sp</dimen>
+    <dimen name="details_subtitle_text">12sp</dimen>
+    <dimen name="details_tertiary_text">10sp</dimen>
 </resources>

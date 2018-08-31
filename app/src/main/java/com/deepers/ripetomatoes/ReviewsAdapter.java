@@ -43,7 +43,6 @@ public class ReviewsAdapter extends RecyclerView.Adapter<ReviewsAdapter.ViewHold
         MovieReview review = mReviews.get(position);
 
         ImageView thumbnail = holder.thumbnail;
-        //thumbnail.setImageURI(Uri.parse(review.getMultimedia().getSrc()));
         Glide.with(mContext)
                 .load(review.getMultimedia().getSrc())
                 .into(thumbnail);

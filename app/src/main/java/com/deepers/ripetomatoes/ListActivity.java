@@ -4,7 +4,6 @@ import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -29,6 +28,8 @@ public class ListActivity extends AppCompatActivity {
     ReviewsAdapter mReviewsAdapter;
     RecyclerView mRecyclerView;
     ProgressBar mSpinner;
+    View mEmtpyOverlay;
+    View mErrorOverlay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,13 +37,15 @@ public class ListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list);
 
         mSpinner = findViewById(R.id.spinner);
+        mErrorOverlay = findViewById(R.id.error_overlay);
+        mEmtpyOverlay = findViewById(R.id.empty_overlay);
 
         mReviews = new ArrayList<>();
         mReviewsAdapter = new ReviewsAdapter(mReviews, this);
         mRecyclerView = findViewById(R.id.rv_movies);
         mRecyclerView.setAdapter(mReviewsAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mRecyclerView.setHasFixedSize(true);
+        //mRecyclerView.setHasFixedSize(true); // no longer true due to text wrapping
 
         // add a divider between rows of the RecyclerView
         DividerItemDecoration itemDecorator = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
@@ -54,16 +57,15 @@ public class ListActivity extends AppCompatActivity {
                 new ItemClickSupport.OnItemClickListener() {
                     @Override
                     public void onItemClicked(RecyclerView recyclerView, int position, View v) {
-                        // launch browser to full review content
-                        Intent launchFullReview = new Intent(Intent.ACTION_VIEW);
                         MovieReview movie = mReviews.get(position);
-                        if (movie != null && movie.getLink() != null) {
-                            String uri = movie.getLink().getUrl();
-                            if (!uri.isEmpty()) {
-                                launchFullReview.setData(Uri.parse(uri));
-                                startActivity(launchFullReview);
-                            }
-                        }
+
+                        // normally the Details screen would fetch its own data and we just need
+                        // to pass in the Movie ID, but as we don't have the API info to fetch
+                        // detailed movie review data, we'll just pass in what we have via a
+                        // an intent with serialized extras.
+                        Intent launchDetailsScreen = new Intent(ListActivity.this, DetailsActivity.class);
+                        launchDetailsScreen.putExtra("review", movie);
+                        startActivity(launchDetailsScreen);
                     }
                 }
         );
@@ -78,16 +80,38 @@ public class ListActivity extends AppCompatActivity {
             public void onChanged(@Nullable List<MovieReview> movieReviews) {
                 mSpinner.setVisibility(View.INVISIBLE);
                 // update the RecyclerView.Adapter's data. DO NOT change the reference.
-                if (movieReviews != null && movieReviews.size() > 0) {
+                if (movieReviews == null) {
+                    // adjust error message if this is not the first chunk of data
+                    mErrorOverlay.setVisibility(View.VISIBLE);
+                    mEmtpyOverlay.setVisibility(View.GONE);
+                } else if (movieReviews.size() == 0) {
+                    // adjust error message if this is not the first chunk of data
+                    mEmtpyOverlay.setVisibility(View.VISIBLE);
+                    mErrorOverlay.setVisibility(View.GONE);
+                } else {
+                    mEmtpyOverlay.setVisibility(View.GONE);
+                    mErrorOverlay.setVisibility(View.GONE);
+
                     mReviews.clear();
                     mReviews.addAll(movieReviews);
                     // notify adapter
                     mReviewsAdapter.notifyDataSetChanged(); // TODO replace with something more efficient, see https://guides.codepath.com/android/using-the-recyclerview
-                } else {
-                    // something went wrong... we got an empty list. Display appropriate error.
                 }
             }
         });
+
+
     }
 
+    @Override
+    public void onBackPressed() {
+        // remove overlays if visible
+        if (mErrorOverlay.getVisibility() == View.VISIBLE) {
+            mErrorOverlay.setVisibility(View.GONE);
+        } else if (mEmtpyOverlay.getVisibility() == View.VISIBLE) {
+            mEmtpyOverlay.setVisibility(View.GONE);
+        } else {
+            super.onBackPressed();
+        }
+    }
 }

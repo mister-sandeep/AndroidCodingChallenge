@@ -14,6 +14,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
+import java.io.Serializable;
+
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonPropertyOrder({
@@ -21,7 +23,9 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
         "url",
         "suggested_link_text"
 })
-public class Link {
+public class Link implements Serializable {
+    private static final long serialVersionUID = -8228695049015749501L;
+
     @JsonProperty("type")
     private String type;
     @JsonProperty("url")

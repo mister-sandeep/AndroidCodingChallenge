@@ -8,6 +8,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
+import java.io.Serializable;
+
 /**
  * Created by Deepers on 8/25/2018.
  * This is the data model for a single Movie Review element.
@@ -28,7 +30,9 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
         "link",
         "multimedia"
 })
-public class MovieReview {
+public class MovieReview implements Serializable {
+    private static final long serialVersionUID = 1510659521384841319L;
+
     @JsonProperty("display_title")
     private String displayTitle;
     @JsonProperty("mpaa_rating")
