@@ -105,12 +105,17 @@ public class ListActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        // remove overlays if visible
-        if (mErrorOverlay.getVisibility() == View.VISIBLE) {
-            mErrorOverlay.setVisibility(View.GONE);
-        } else if (mEmtpyOverlay.getVisibility() == View.VISIBLE) {
-            mEmtpyOverlay.setVisibility(View.GONE);
+        if (mReviews.size() > 0) {
+            // remove overlays if visible, old list will be displayed
+            if (mErrorOverlay.getVisibility() == View.VISIBLE) {
+                mErrorOverlay.setVisibility(View.GONE);
+            } else if (mEmtpyOverlay.getVisibility() == View.VISIBLE) {
+                mEmtpyOverlay.setVisibility(View.GONE);
+            } else {
+                super.onBackPressed();
+            }
         } else {
+            // no existing content in the list... just back out of the app for now
             super.onBackPressed();
         }
     }
